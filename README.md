@@ -1,87 +1,48 @@
-# SentimentAPI Analytics - UI Proposal
+# Configuración y Ejecución
 
-Este repositorio contiene la propuesta de diseño frontend para **SentimentAPI Analytics**, una plataforma web dedicada al procesamiento masivo de Análisis de Sentimientos de Feedbacks.
+Python se abre con Visual Studio Code o un editor similar.
 
-**SentimentAPI** es una solución integral de Data Science y Backend diseñada para automatizar el análisis de feedback de clientes. Permite a las empresas procesar grandes volúmenes de reseñas y comentarios para identificar rápidamente la satisfacción del usuario, priorizar la atención de quejas y monitorear la reputación de marca.
+## 1. Ubícate en la carpeta del servicio
 
-El proyecto se centra en ofrecer una experiencia de usuario (UX) fluida para la carga de datasets (.csv) y la visualización clara de resultados predictivos.
+```bash
+cd Backend
 
-##  Características Principales
+## 2. Crea tu entorno virtual
 
-* **Diseño Responsivo:** Adaptabilidad total a dispositivos móviles y escritorio utilizando **Bootstrap 5**.
-* **Gestión de Archivos:** Interfaz intuitiva "Drag & Drop" para la carga de archivos CSV.
-* **Dashboard Interactivo:** Visualización de métricas y distribución de sentimientos mediante **Chart.js**.
-* **Feedback Visual:** Indicadores de estado, barras de progreso y clasificación por colores (Semáforo de sentimientos).
-* **Estética Profesional:** Interfaz limpia (Clean UI) con tipografía legible y paleta de colores corporativa.
+```bash
+python -m venv venv
 
-##  Stack Tecnológico
+## 3. Activa el entorno virtual
 
-* **HTML5** - Estructura semántica.
-* **CSS3** - Estilos personalizados y diseño adaptativo.
-* **Bootstrap 5.3** - Framework de componentes UI y sistema de grillas.
-* **JavaScript (ES6)** - Lógica de interacción y manipulación del DOM.
-* **Chart.js** - Librería para la generación de gráficos dinámicos.
+```bash
 
-##  Estructura del Proyecto
+.\venv\Scripts\actívate
 
-* `index.html`: Landing page y módulo de carga de archivos.
-* `dashboard.html`: Tablero de resultados y visualización de datos.
-* `style.css`: Hoja de estilos personalizada.
-* `script.js`: Lógica de frontend y simulación de datos.
+## 4. Instala las dependencias
 
-##  Propuesta de Valor
+```bash
+pip install -r requirements.txt
 
-En un entorno donde las empresas reciben miles de comentarios diarios, la lectura manual es inviable. Este proyecto ofrece:
-* **Detección automática de urgencias:** Clasifica comentarios negativos para atención prioritaria.
-* **Insights accionables:** Transforma texto no estructurado en métricas medibles.
-* **Visión histórica:** Permite medir la evolución de la satisfacción del cliente.
+## 5. Levanta el microservicio
 
-## 🛠️ Arquitectura Técnica
+### Ejecutamos el servidor en el puerto 5000 para evitar conflictos con el backend en Java, que utiliza el puerto 8080 por defecto.
 
-El proyecto demuestra la integración funcional entre un modelo de Machine Learning y una API robusta.
+```bash
+uvicorn app:app --reload --port 5000
 
-###  Data Science (Python)
-Utilizamos técnicas clásicas de **Procesamiento de Lenguaje Natural (NLP)** supervisado:
-* **Limpieza de Datos (EDA):** Preprocesamiento de tweets y reviews (eliminación de stopwords, normalización).
-* **Vectorización:** Transformación de texto a representación numérica mediante **TF-IDF**.
-* **Modelo Predictivo:** Implementación de **Regresión Logística** (Logistic Regression) / Naive Bayes para clasificación de sentimientos.
-* **Serialización:** Exportación del pipeline entrenado mediante `joblib`.
+###El microservicio quedará disponible en:
 
-###  Back-End (Java & Spring Boot)
-* **API RESTful:** Exposición de endpoints para consumo externo.
-* **Integración:** Carga y ejecución del modelo predictivo para inferencia en tiempo real.
-* **Validación:** Manejo de errores y respuestas JSON estandarizadas.
+```bash
+http://localhost:5000
 
-###  Front-End (Dashboard MVP)
-* **Interfaz Web:** Panel para carga masiva de datos (Batch Processing) vía CSV.
-* **Visualización:** Gráficos interactivos con **Chart.js** para distribución de sentimientos.
-* **Bootstrap 5:** Diseño responsivo y profesional.
 
-##  Funcionalidades (MVP)
+### ¿Por qué se cambia el puerto?
 
-### 1. Análisis en Tiempo Real
-Endpoint para clasificar un comentario individual.
-* **Input:** JSON con el texto a analizar.
-* **Output:** Clasificación (Positivo/Neutro/Negativo) + Score de probabilidad (Confianza).
+Spring Boot (backend en Java) incluye un servidor web embebido, generalmente Tomcat, que por defecto escucha en el puerto 8080.
 
-### 2. Batch Processing (Procesamiento por Lotes)
-Capacidad de subir un archivo `.csv` con múltiples comentarios y recibir un reporte estadístico completo y visualizaciones en el Dashboard.
+Para evitar conflictos entre ambos servicios:
 
-### 3. Soporte Multilingüe 
-El modelo ha sido entrenado para interpretar y clasificar textos tanto en **Español** como en **Portugués**, permitiendo escalabilidad regional.
+- **Backend Java (Spring Boot):** puerto 8080
+- **Microservicio Python (FastAPI):** puerto 5000
 
-##  Vista Previa  
-
-##  Vista Previa y Demo
-
-### 1. Carga de Archivos (Landing Page)
-
-<img width="100%" alt="Vista Carga" src="https://github.com/user-attachments/assets/0a50e368-bf10-4842-a586-bc3b1b50152b" />
-
----
-
-### 2. Dashboard de Resultados
-
-<img width="100%" alt="Vista Dashboard" src="https://github.com/user-attachments/assets/7ecc639f-e334-4eae-a54a-9b2dd2249178" />
-<img width="100%" alt="image" src="https://github.com/user-attachments/assets/0255f874-a569-4816-a612-5a8944bbccd0" />
-
+Esto permite que ambos servicios se ejecuten simultáneamente sin interferencias.
