@@ -82,54 +82,41 @@ ____________________________________________________________________________
 
 # Backend Principal (Java Spring Boot)
 
-> **Nota:** Para correr Java con Spring Boot se recomienda usar **IntelliJ IDEA**  
-> https://es.wikipedia.org/wiki/IntelliJ_IDEA
+**Repositorio:** [https://github.com/rominarg/sentimentAPI_backend](https://github.com/rominarg/sentimentAPI_backend)
 
-> **Para principiantes:**  
-> Si nunca usaste Spring Boot, podés practicar con este ejemplo simple:  
-> https://www.youtube.com/watch?v=YqlxKOY2QmY&t=103s
+Para correr Java con Spring Boot use el programa **IntelliJ IDEA** ([Wikipedia](https://es.wikipedia.org/wiki/IntelliJ_IDEA)).
 
-Este backend es el **núcleo de la aplicación**.  
-Se encarga de:
+*(Para los que nunca lo usaron pueden practicar con este ejemplo simple: [Video Tutorial](https://www.youtube.com/watch?v=YqlxKOY2QmY&t=103s))*
 
-- Recibir las peticiones del usuario desde el **frontend**
-- Gestionar la **lógica de negocio**
-- Comunicarse con el **microservicio en Python** para obtener el análisis de sentimientos
+Este es el **núcleo de la aplicación**. Se encarga de recibir las peticiones del usuario desde el frontend, gestionar la lógica de negocio y comunicarse con el microservicio de Python para obtener el análisis de sentimientos.
 
----
+### Requisitos previos:
+- **Java JDK:** Versión 17 o superior.
+- **IntelliJ IDEA:** Recomendado (Cualquier versión reciente).
 
-### Requisitos previos
+## Pasos para ejecutar en IntelliJ IDEA:
 
-- **Java JDK:** Versión **17 o superior**
-- **IntelliJ IDEA:** Recomendado (cualquier versión reciente)
+1. **Abrir el proyecto**
+   - Abre IntelliJ IDEA.
+   - Selecciona `File > Open` y busca la carpeta `sentimentAPI_backend` (o la carpeta clonada del repositorio).
+   - **Importante:** Asegúrate de abrir la carpeta que contiene el archivo **pom.xml**.
 
----
+2. **Cargar dependencias (Maven)**
+   - Al abrir el proyecto, IntelliJ debería detectar automáticamente el archivo `pom.xml`.
+   - Si ves una notificación flotante pequeña, haz clic en el icono de **"Load Maven Changes"** (es una M pequeña con un símbolo de recarga).
+   - Espera a que la barra de progreso inferior termine de descargar las librerías.
 
-### Pasos para ejecutar en IntelliJ IDEA
+3. **Ejecutar la aplicación**
+   - Busca el archivo principal (usualmente llamado `SentimentApiApplication.java` dentro de `src/main/java`).
+   - Haz clic derecho sobre el archivo y selecciona **"Run 'SentimentApiApplication'..."**.
+   - O simplemente presiona el botón de **Play verde** en la barra superior si ya detectó la configuración.
 
-#### 1. Abrir el proyecto
+## Nota importante sobre el orden de ejecución
 
-1. Abrí **IntelliJ IDEA**
-2. Seleccioná **File > Open**
-3. Buscá la carpeta `sentimentAPI` (o la carpeta donde esté el código Java)
+Para que el sistema funcione completo, el **orden ideal de encendido** es:
 
-⚠️ **Importante:**  
-Asegurate de abrir la carpeta que contiene el archivo **`pom.xml`**
-
----
-
-#### 2. Cargar dependencias (Maven)
-
-- Al abrir el proyecto, IntelliJ debería detectar automáticamente el archivo `pom.xml`
-- Si aparece una notificación flotante, hacé clic en **"Load Maven Changes"**  
-  (ícono de una **M** pequeña con símbolo de recarga)
-- Esperá a que la barra de progreso inferior termine de descargar las librerías
-
-
-#### 3. Ejecutar la aplicación
--Busca el archivo principal (usualmente llamado SentimentApiApplication.java dentro de src/main/java).
--Haz clic derecho sobre el archivo y selecciona "Run 'SentimentApiApplication'...".
-O simplemente presiona el botón de Play verde en la barra superior si ya detectó la configuración.
+1. Primero enciende el **Microservicio de Python** en VSC u otro similar.
+2. Luego enciende este **Backend de Java** (Puerto 8080 por defecto) - IntelliJ.
 
 
 ## Nota importante sobre el orden de ejecución
