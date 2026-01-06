@@ -111,12 +111,6 @@ Este es el **núcleo de la aplicación**. Se encarga de recibir las peticiones d
    - Haz clic derecho sobre el archivo y selecciona **"Run 'SentimentApiApplication'..."**.
    - O simplemente presiona el botón de **Play verde** en la barra superior si ya detectó la configuración.
 
-## Nota importante sobre el orden de ejecución
-
-Para que el sistema funcione completo, el **orden ideal de encendido** es:
-
-1. Primero enciende el **Microservicio de Python** en VSC u otro similar.
-2. Luego enciende este **Backend de Java** (Puerto 8080 por defecto) - IntelliJ.
 
 
 ## Nota importante sobre el orden de ejecución
